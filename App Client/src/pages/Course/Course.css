@@ -1,0 +1,110 @@
+.create-course {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: left;
+  padding: 1rem;
+  margin-top: 2rem;
+  background-color: white;
+  border: #623cc9 solid 1px;
+  border-radius: 50px;
+  margin-left: 4.5%;
+
+  margin-bottom: 15%;
+}
+
+.create-course h2 {
+  color: #623cc9;
+}
+.text {
+  border: #623cc9 solid 1px;
+  border-radius: 20px;
+
+  font-size: large;
+  color: #623cc9;
+  padding: 0.5rem;
+
+  font-size: medium;
+}
+input[type="number"] {
+  border: #623cc9 solid 1px;
+  border-radius: 20px;
+  font-size: large;
+  color: #623cc9;
+  padding: 0.5rem;
+  width: 30%;
+  font-size: medium;
+}
+input[type="date"] {
+  border: #623cc9 solid 1px;
+  border-radius: 20px;
+  font-size: large;
+  font-weight: bolder;
+  color: #623cc9;
+  padding: 0.5rem;
+  width: 30%;
+  font-size: medium;
+}
+label {
+  color: #623cc9;
+  font-size: large;
+  font-weight: 500;
+  font-size: 1em;
+}
+button {
+  margin: 0px auto;
+  margin-top: 100px;
+  border-radius: 50px;
+  width: 10%;
+  padding: 20px;
+  font-size: 25px;
+  font-weight: bolder;
+  background-color: rgb(38, 110, 146);
+  background-blend-mode: screen;
+}
+option {
+  padding: 0.5rem;
+  font-size: 1em;
+  font-weight: 400;
+}
+.inline-label label,
+.inline-label input {
+  display: inline-block;
+  margin-right: 10px;
+  width: 40%;
+}
+.end-page {
+  border: #623cc9 solid 1px;
+  border-radius: 15px;
+  padding: 0.5rem;
+}
+.upload-photo {
+  border: #623cc9 solid 1px;
+  border-radius: 20px;
+  padding: 0.5rem;
+  margin-top: 2rem;
+}
+input[type="file"] {
+  font-size: medium;
+  font-weight: bolder;
+}
+.btn-submite {
+  font-size: larger;
+  padding: 0.5rem;
+  background: #373396;
+  color: var(--color-white);
+}
+.btn-submite:hover {
+  background: #8c84fa;
+  color: var(--color-white);
+}
+
+.form__error-message{
+  background: var(--color-red);
+  color: var(--color-white);
+  font-size: .8rem;
+  padding: .6rem 1rem;
+  border-radius: var(--radius-1);
+  display: block;
+  margin-bottom: 1rem;
+}

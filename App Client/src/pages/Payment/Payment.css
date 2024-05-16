@@ -1,0 +1,53 @@
+.payment-form {
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  .payment-container {
+    max-width: 600px;
+    margin-inline: auto;
+    border-radius: 20px;
+    border: solid #524ec9;
+    padding: 0.5rem;
+    margin-top: 2rem;
+    background-color: #dbe3ee;
+  }
+  .btn.primary {
+    padding: 0.3rem;
+  }
+  .Course-data {
+    border-radius: 20px;
+    border: solid #524ec9;
+    padding: 0.5rem;
+    margin-top: 2rem;
+    background-color: #fafafa;
+  }
+
+  .form__error-message{
+    background: var(--color-red);
+    color: var(--color-white);
+    font-size: .8rem;
+    padding: .6rem 1rem;
+    border-radius: var(--radius-1);
+    display: block;
+    margin-bottom: 1rem;
+  }

@@ -1,0 +1,35 @@
+.delete-course-dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding: 0.5rem;
+  margin-top: 4rem;
+  background-color: white;
+  border: #623cc9 solid 1px;
+  border-radius: 50px;
+  margin: auto;
+  font-size: medium;
+  max-width: 50%;
+  height: 70%;
+}
+.logo-u img {
+  margin-inline: auto;
+  width: 20vw;
+}
+
+.btn-submite {
+  font-size: medium;
+  background: #373396;
+  color: var(--color-white);
+  padding: 0.5rem;
+  padding-inline: 1rem;
+  width: auto;
+}
+.btn-submite:hover {
+  background: #8c84fa;
+  color: var(--color-white);
+}
+.btn-list {
+  display: flex;
+}

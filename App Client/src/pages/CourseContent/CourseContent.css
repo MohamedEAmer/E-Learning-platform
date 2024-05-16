@@ -1,0 +1,123 @@
+/* Styles for the course content */
+.course-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Styles for the main video section */
+.main-video {
+  width: calc(65%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  margin-right: 1rem;
+  border: dashed #373396;
+  border-radius: 10px;
+}
+
+.main-video-title {
+  margin-top: 2em;
+  font-size: 1.5em;
+  color: #333;
+  margin-inline: auto;
+}
+
+.video {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 0;
+  height: 100%;
+}
+
+/* Styles for the video playlist section */
+.video-playlist {
+  min-width: 100%;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #ece6fa;
+  padding: 1em;
+  max-height: 50vh;
+  overflow-y: auto;
+  margin-right: 3em;
+  margin-top: 0;
+}
+
+.playlist-title {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 0.5em;
+  margin-top: 0;
+}
+
+.playlist {
+  list-style: none;
+  padding: 0;
+}
+
+.playlist li {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  gap: 0.5rem;
+}
+
+.playlist li:hover {
+  background-color: #aeb3e2;
+  border-radius: 10px;
+}
+
+.playlist li.active {
+  background-color: #aeb3e2;
+  border-radius: 10px;
+}
+
+.playlist li img {
+  width: 4vw;
+  height: 5vh;
+  margin-right: 1em;
+}
+
+.video-info {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+}
+.video-icon {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.video-info h4 {
+  margin: 0;
+  font-size: 1em;
+  color: #333;
+}
+
+.video-info p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #777;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  .course-content {
+    flex-direction: column; /* Change back to column for smaller screens */
+  }
+
+  .main-video {
+    max-width: 100%;
+    margin-bottom: 1em; /* Add space between main video and playlist on smaller screens */
+  }
+}
+.icon-container {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}

@@ -1,0 +1,155 @@
+.create-session {
+  margin-top: 5rem;
+  margin-inline: auto ;
+  border: #6d64e8 solid 0.16em;
+  width: 85%;
+  border-radius: 10px;
+}
+.container-session {
+  margin: auto;
+  width: 85%;
+}
+button {
+  margin: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+h2, h4 {
+  margin-top: 1em;
+}
+.session-name {
+  border-radius: 10px;
+  border: #514ba8 0.16em solid;
+  margin-right: 0;
+  width: auto;
+}
+.Session-Type {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+.chose {
+  margin: auto;
+  margin-left: 0;
+}
+input[type="radio"] {
+  color: #514ba8;
+  height: 1.3em;
+}
+
+/* Styles for the ReactQuill container */
+
+.react-quill {
+  border: 1px solid #6d64e8;
+  border-radius: 10px;
+}
+
+/* Styles for the toolbar */
+.react-quill .ql-toolbar {
+  background-color: #e0d6f8;
+  border-bottom: 1px solid #6d64e8;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Styles for toolbar buttons */
+.react-quill .ql-toolbar .ql-picker-label,
+.react-quill .ql-toolbar .ql-picker-options,
+.react-quill .ql-toolbar .ql-picker.ql-expanded .ql-picker-label {
+  color: #333;
+}
+
+/* Styles for the editor area */
+.react-quill .ql-editor {
+  min-height: 200px;
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Styles for placeholder text */
+.react-quill .ql-editor::before {
+  color: #999;
+}
+
+/* Styles for specific toolbar items */
+.react-quill .ql-bold {
+  font-weight: bold;
+}
+.react-quill .ql-italic {
+  font-style: italic;
+}
+.react-quill .ql-underline {
+  text-decoration: underline;
+}
+.react-quill .ql-strike {
+  text-decoration: line-through;
+}
+
+input[type="checkbox"] {
+  color: #514ba8;
+  width: 1.5vw;
+}
+
+.time {
+  display: flex;
+  justify-content: space-around;
+  margin: 0.5rem;
+}
+input[type="date"],
+input[type="time"] {
+  min-width: 100%;
+  margin-left: 5vh;
+  color: #514ba8;
+}
+.checkbox {
+  margin: auto;
+  margin-left: 0;
+}
+.btn-1 {
+  background-color: #e0d6f8;
+  color: #514ba8;
+  font-size: large;
+  padding-top: 0;
+}
+.BsCloudUpload {
+  margin-top: 0.5em;
+  height: 2vh;
+}
+.upload-Media {
+  border: #623cc9 solid 1px;
+  border-radius: 20px;
+  padding: 0.5rem;
+  margin-top: 2rem;
+}
+input[type="file"] {
+  font-size: medium;
+  font-weight: bolder;
+}
+
+.form__error-message{
+  display: flex;
+  width: 85%;
+  text-align: center;
+  justify-content: center;
+  background: var(--color-red);
+  color: var(--color-white);
+  font-size: .8rem;
+  padding: .6rem 1rem;
+  border-radius: var(--radius-1);
+  /* display: block; */
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  margin-inline:auto;
+}
+@media screen and (max-width: 750px) {
+  .time {
+    flex-direction: column; /* Change to column layout for smaller screens */
+    align-items: center; /* Center items in column layout */
+  }
+  input[type="date"],
+  input[type="time"] {
+    width: 80%; /* Adjust width for better fit in smaller screens */
+    margin: 0.4rem 0; /* Adjust margin for better spacing */
+  }
+}

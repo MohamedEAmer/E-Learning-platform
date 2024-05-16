@@ -1,0 +1,239 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  --color-primary: #524ec9;
+  --color-white: #fff;
+  --color-red: red;
+  --color-gray-700: #363653;
+  --color-gray-900: #16163a;
+  --color-bg: hwb(240 95% 0%);
+  --transition: all 300ms ease;
+  --container-width-lg: 50%;
+  --container-width-md: 50%;
+  --form-width: 50%;
+  --radius-1: 0.3em;
+  --radius-2: 0.6em;
+  --radius-3: 1em;
+  --radius-4: 2em;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--color-bg);
+  font-size: medium;
+  line-height: 1.6;
+  color: #0e0e58;
+  width: auto;
+}
+
+a {
+  color: var(--color-gray-700);
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-gray-700);
+  line-height: 1.1;
+}
+img {
+  display: block;
+}
+
+h3 {
+  line-height: 1.25;
+}
+h4 {
+  font-size: 1.1em;
+}
+h5 {
+  line-height: 1.4;
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+}
+
+section {
+  margin-top: 3em;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+  /* every thing fits its container */
+}
+
+.container {
+  width: var(--container-width-lg);
+  margin-inline: auto;
+}
+
+.btn {
+  display: block;
+  width: auto;
+  padding: 0rem 1rem;
+  border-radius: var(--radius-2);
+  background: var(--color-white);
+  font-weight: 400;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: medium;
+}
+
+.btn.primary {
+  background: #373396;
+  color: var(--color-white);
+  font-size: medium;
+  text-align: center;
+}
+.btn.buy {
+  margin-top: 1rem;
+  margin-inline: auto;
+  background: #aaaabd;
+  color: var(--color-white);
+  font-size: medium;
+  text-align: center;
+  width: 25%;
+}
+
+.btn.sm {
+  padding: 0.3em 0.7em;
+  font-weight: 400;
+}
+.btn.danger {
+  background: var(--color-red);
+  color: var(--color-white);
+}
+
+.btn:hover {
+  background: #8c84fa;
+  color: var(--color-white);
+}
+/**********************error page***********************/
+
+/**********************nav***********************/
+
+/**************************Posts************************/
+
+/**********************Post detail***********************/
+
+.course-detail {
+  width: var(--form-width);
+  background: var(--color-white);
+  margin-inline: auto;
+  padding: 2em 0;
+}
+
+.course-detail__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5em;
+}
+
+.course-detail__buttons {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.course-detail__thumbnail {
+  margin: 1em 0;
+  height: fit-content;
+  /* max-width: 30rem; */
+  overflow: hidden;
+}
+
+.course-detail p {
+  margin-bottom: 0.7em;
+}
+
+/**************************Author************************/
+
+/*******************profile*********************/
+
+/*******************Dashboard*********************/
+/***********Loader***********/
+
+.loader{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+  background: var(--color-bg);
+}
+
+.loader__image{
+  width: 4.5rem;
+  aspect-ratio: 1/1;
+}
+/*****quill custom css*****/
+.ql-editor {
+  overflow: scroll;
+  background: var(--color-white);
+  height: 12vh !important;
+}
+
+/*********responsive********/
+
+@media screen and (max-width: 700px) {
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.6em;
+  }
+  h3 {
+    font-size: 1.35em;
+  }
+  .container {
+    width: var(--container-width-md);
+  }
+
+  .course__container {
+    grid-template-columns: 1fr;
+    gap: 1em;
+  }
+
+  .course-detail {
+    width: 100%;
+    background: transparent;
+    padding: 0;
+  }
+
+  .register .login .create-course {
+    width: 100%;
+  }
+
+  .form.profile__form {
+    margin-top: 2.5em;
+    width: 100%;
+  }
+}
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-inline: auto;
+  background-image: url("/src/images/background-3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  filter: saturate(70%);
+}

@@ -1,0 +1,54 @@
+.sidebar {
+  background: #fff;
+  min-width: fit-content;
+  z-index: 2;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+  position: fixed;
+  height: 100%;
+  top: 0;
+}
+
+.link {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  color: #fff;
+  transition: all 0.5s;
+  cursor: pointer;
+  max-width: fit-content;
+  padding: 0.4rem;
+}
+.link:hover {
+  background: #d9dcfa;
+  color: #6d64e8;
+  border-radius: 15px;
+  transition: all 0.5s;
+}
+.active {
+  background: #d9dcfa;
+  color: var(--color-gray-700);
+  border-radius: 15px;
+}
+
+.icon {
+  max-width: 6em;
+  height: 4em;
+  color: #6d64e8;
+  padding: 0;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+  gap: 1rem;
+  min-width: fit-content;
+}
+.img {
+  margin-top: 0.5rem;
+  padding: 0.4rem 0;
+  max-width: 2.4rem;
+}

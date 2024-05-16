@@ -1,0 +1,11 @@
+.center {
+  text-align: center;
+  padding-top: 5rem;
+  margin-inline: center;
+  display: block;
+}
+.error-page h2 {
+  margin-top: 3rem;
+  margin-inline: center;
+  height: 30vh;
+}

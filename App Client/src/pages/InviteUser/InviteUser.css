@@ -1,0 +1,54 @@
+.container {
+  margin-top: 20vh;
+  width: 100vw;
+  margin-inline: auto;
+}
+
+.invite-box {
+  margin: auto;
+  border: #6d64e8 solid 0.16em;
+  border-radius: 10px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.enter-email,
+.enter-name {
+  border-radius: 10px;
+  border: #514ba8 0.16em solid;
+  text-align: center;
+  font-size: medium;
+  padding: 0.5rem;
+}
+
+.invite-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  background-color: #bebbee;
+  border-radius: 10px;
+  padding: 1rem 1rem;
+  gap: 2rem;
+}
+
+.form__error-message{
+  background: var(--color-red);
+  color: var(--color-white);
+  font-size: .8rem;
+  padding: .6rem 1rem;
+  border-radius: var(--radius-1);
+  display: block;
+  margin-bottom: 1rem;
+}
+.form__success-message{
+  background: rgb(37, 221, 37);
+  color: var(--color-white);
+  font-size: .8rem;
+  padding: .6rem 1rem;
+  border-radius: var(--radius-1);
+  display: block;
+  margin-bottom: 1rem;
+}
