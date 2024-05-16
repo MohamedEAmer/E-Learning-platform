@@ -151,12 +151,12 @@ const Payment = () => {
 
         {!isSubmitting && (
           <button type="submit" className="btn primary">
-            Update Details
+            Confirm
           </button>
         )}
         {isSubmitting && (
           <button type="submit" className="btn primary" disabled>
-            Update Details
+            Confirm
           </button>
         )}
       </form>

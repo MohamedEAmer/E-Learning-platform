@@ -28,7 +28,7 @@ const CourseItem = ({courseID,
       </div>
       <div className="course__content">
 
-        {currentUser?.accType === 'student' && !home ?
+        {!home ?
         (<Link className="btn sm " to={`/sessions/course/${courseID}`}>
           <h3>{title}</h3>
         </Link>

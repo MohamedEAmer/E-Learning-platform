@@ -120,12 +120,12 @@ const handleStudentAccount = async (e) =>{
             </select>
             {!isSubmitting && (
               <button type="submit" className="btn primary">
-                Update Details
+                Invite
               </button>
             )}
             {isSubmitting && (
               <button type="submit" className="btn primary" disabled>
-                Update Details
+                Invite
               </button>
             )}
         </form>
