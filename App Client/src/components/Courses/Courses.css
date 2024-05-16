@@ -6,13 +6,13 @@
 }
 
 .course {
-  background: var(--color-white);
-  padding: 1em;
-  border-radius: var(--radius-4);
-  padding-bottom: 2em;
-  transition: var(--transition);
-  cursor: pointer;
-  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
 .course:hover {
@@ -25,23 +25,34 @@
   height: 20vh;
 }
 
+.course__thumbnail img {
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid #ddd;
+}
+
 .course__content {
-  margin-top: 1.5em;
-  margin-bottom: 0%;
+  padding: 16px;
 }
 
 .course__content h3 {
-  margin: 1em 0 0.6em;
-  margin-top: 0;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.course__content p {
+  margin: 16px 0;
+  color: #555;
 }
 
 .course__footer {
-  display: grid;
-  grid-template-columns:1fr 1fr 1fr 1fr 1fr;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-top: 1em;
-  gap: .5rem;
+  padding: 16px;
+  border-top: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
+
+.course__footer p {
+  margin: 8px 0;
 }
 
 .course__author {
@@ -51,19 +62,14 @@
 }
 
 .course__author-avatar {
-  width: 3vw;
-  aspect-ratio: 1/1;
-  border-radius: var(--radius-2);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   overflow: hidden;
+  flex-shrink: 0;
+  margin-right: 10px;
 }
 
-.user {
-  margin-top: 1em;
-}
-
-.prof {
-  margin-bottom: 1em;
-}
 
 .course-header {
   display: flex;
@@ -73,17 +79,52 @@
   margin-bottom: 1em;
 }
 
-.btn-1 {
-  padding: 0.6rem;
-  font-weight: 400;
-  font-size: medium;
-  background-color: #524ec9;
-  color: #fff;
-  border-radius: 10px;
-  width: fit-content;
+
+
+.course__purchase, .course__price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 0;
 }
 
-.btn-1:hover {
-  background: #8c84fa;
-  color: var(--color-white);
+.course__purchase h3, .course__price h3 {
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.course__purchase .btn, .course__footer .btn {
+  font-size: 1rem;
+  padding: 8px 16px;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.course__purchase .btn.buy {
+  background-color: #8c84fa;
+  color: #fff;
+}
+
+.course__purchase .btn.buy:hover {
+  background-color: #524ec9;
+}
+
+.course__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+
+}
+
+.course__actions .btn.primary {
+  background-color: #524ec9;
+  color: #fff;
+}
+
+.course__actions .btn.primary:hover {
+  background-color: #8c84fa;
 }

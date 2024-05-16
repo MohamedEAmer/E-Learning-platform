@@ -48,7 +48,7 @@ const AttendeesCourses = () => {
     <section>
       {currentUser?.accType === 'instructor' &&<div className="course-header">
         <Link className="btn primary +" to={"/create"}>
-          +
+        Create Course +
         </Link>
       </div>}
       {courses.length > 0 ? (

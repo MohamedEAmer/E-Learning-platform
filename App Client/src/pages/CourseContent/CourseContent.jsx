@@ -16,6 +16,10 @@ import DeleteSession from "../Session/DeleteSession";
 
 
 const CourseContent = () => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [thumbnail , setThumbnail] = useState('');
+  const [intro, setIntor] = useState("");
   const [sessions, setSessions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentSession , setCurrentSession] = useState('')
@@ -44,6 +48,21 @@ const CourseContent = () => {
       }
     }
     getUser();
+  },[])
+
+  useEffect(()=>{
+    const getCourse =async () =>{
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/courses/${id}`)
+        setIntor(response.data.intro)
+        setTitle(response.data.title)
+        setDescription(response.data.description)
+        setThumbnail(response.data.thumbnail)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getCourse()
   },[])
 
   const getSingleSessionHandler = async (id) => {
@@ -81,21 +100,45 @@ const CourseContent = () => {
   return (
     <>
       <div className="course-content">
-      <section className="main-video">
-        {(['video/mp4', 'video/mkv', 'video/avi'].includes(extension)) && (<ReactPlayer
-            controls={true}
-            url={`${process.env.REACT_APP_ASSETS_URL}/uploads/${currentSession.media}`}
-            className="video"
-            muted={false}
-            width="700px"
-            height="500px"
-          />)}
-          {(['image/jpg', 'image/jpeg', 'image/png'].includes(extension)) &&(<img className="video" src={`${process.env.REACT_APP_ASSETS_URL}/uploads/${currentSession.media}`} alt='' style={{ width: '700px', height: '500px' }} />)}
-          {(extension === 'pdf') && (<iframe title= 'pdf'className="video" src={`${process.env.REACT_APP_ASSETS_URL}/uploads/${currentSession.media}`} style={{ width: '700px', height: '500px' }}/>)}
-          {!(['video/mp4', 'video/mkv', 'video/avi','image/jpg', 'image/jpeg', 'image/png','pdf'].includes(extension)) && (
-            <p>Please Select a Session</p>
+      <section>
+
+        {(['video/mp4', 'video/mkv', 'video/avi'].includes(extension)) && (
+          <div className="content-container">
+            <ReactPlayer
+              controls={true}
+              url={`${process.env.REACT_APP_ASSETS_URL}/uploads/${currentSession.media}`}
+              className="video"
+              muted={false}
+            />
+            <p className="content-intro" dangerouslySetInnerHTML={{__html:currentSession.data}}/>
+          </div>
           )}
-          <p className="main-video-title" dangerouslySetInnerHTML={{__html:currentSession.data}}/>
+
+        {(['image/jpg', 'image/jpeg', 'image/png'].includes(extension)) && (
+          <div className="content-container">
+            <img className="content-video" src={`${process.env.REACT_APP_ASSETS_URL}/uploads/${currentSession.media}`} alt='' />
+            <p className="content-intro" dangerouslySetInnerHTML={{__html:currentSession.data}}/>
+          </div>
+        )}
+
+        {(extension === 'pdf') && (
+          <div className="content-container">
+            <iframe title= 'pdf' src={`${process.env.REACT_APP_ASSETS_URL}/uploads/${currentSession.media}`} />
+            <p className="content-intro" dangerouslySetInnerHTML={{__html:currentSession.data}}/>
+          </div>
+        )}
+
+        {!(['video/mp4', 'video/mkv', 'video/avi','image/jpg', 'image/jpeg', 'image/png','pdf'].includes(extension)) && 
+        (
+          <div className="content-container">
+            <p className="content-title" dangerouslySetInnerHTML={{ __html: title }} />
+            <p className="content-description" dangerouslySetInnerHTML={{ __html: description }} />
+            <img className="content-video" src={`${process.env.REACT_APP_ASSETS_URL}/uploads/${thumbnail}`} alt='' />
+            <p className="content-intro" dangerouslySetInnerHTML={{ __html: intro }} />
+          </div>
+        )}
+          
+        
       </section>
 
         <div className="big-container">

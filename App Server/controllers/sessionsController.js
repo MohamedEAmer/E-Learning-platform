@@ -11,9 +11,9 @@ const HttpError = require('../models/errorModel')
 
 // POST , api/sessions/course/id(course id) , protected
 const createSession = async (req,res,next) => {
-    //input hidden contain the course name or something like that
     try {
-        const courseId = req.params.id;// can be used
+            
+        const courseId = req.params.id;
         const currentCourse = await Course.findById(courseId)
         const course = currentCourse.title
         let { name , data ,description } = req.body;

@@ -59,7 +59,7 @@ h5 {
 }
 
 img {
-  object-fit: cover;
+  /* object-fit: cover; */
   width: 100%;
 }
 

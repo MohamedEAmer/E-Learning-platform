@@ -28,7 +28,7 @@
 .video {
   max-width: 100%;
   border-radius: 10px;
-  margin-bottom: 0;
+  margin-inline: auto;
   height: 100%;
 }
 
@@ -120,4 +120,58 @@
   display: flex;
   justify-content: space-around;
   margin-bottom: 1rem;
+}
+
+
+.content-container {
+  padding: 16px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.content-title, .content-description, .content-intro {
+  margin: 16px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+.content-intro {
+  margin: 16px 16px;
+
+}
+
+
+.content-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.content-video {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    padding: 12px;
+  }
+
+  .content-title {
+    font-size: 1.25rem;
+  }
+
+  .content-description, .content-intro {
+    font-size: 1rem;
+  }
+
+  .content-video {
+    width: 100%;
+    height: auto;
+  }
 }

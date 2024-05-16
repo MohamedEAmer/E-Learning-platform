@@ -7,8 +7,10 @@ import axios from 'axios'
 
 const EditCourse = () => {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("Uncategorized");
+  const [description, setDescription] = useState("");
+  const [intro, setIntor] = useState("");
   const [duration, setDuration] = useState(0);
+  const [price, setPrice] = useState(0);
   const [category , setCategory] = useState('');
   const [thumbnail , setThumbnail] = useState('');
 
@@ -67,6 +69,8 @@ const EditCourse = () => {
         setDescription(response.data.description)
         setCategory(response.data.category)
         setDuration(response.data.duration)
+        setPrice(response.data.price)
+        setIntor(response.data.intro)
       } catch (err) {
         console.log(err)
       }
@@ -84,7 +88,9 @@ const EditCourse = () => {
     courseData.set('title',title)
     courseData.set('category',category)
     courseData.set('duration',duration)
+    courseData.set('price',price)
     courseData.set('description',description)
+    courseData.set('intro',intro)
     courseData.set('thumbnail',thumbnail)
 
     try {
@@ -113,11 +119,18 @@ const EditCourse = () => {
           autoFocus
         />
         <label>Course Descrption:</label>
+        <input
+          type="text"
+          placeholder="Descrption"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <label>Course Introduction:</label>
         <ReactQuill
           modules={modules}
           formats={formats}
-          value={description}
-          onChange={setDescription}
+          value={intro}
+          onChange={setIntor}
         />
 
         <div className="inline-label">
@@ -129,7 +142,14 @@ const EditCourse = () => {
               onChange={(event) => setDuration(event.target.value)}
             />
           </label>
-
+          <label>
+            Course Price:
+            <input
+              type="number"
+              value={price}
+              onChange={(event) => setPrice(event.target.value)}
+            />
+          </label>
         </div>
         <br />
         <div className="form-group">

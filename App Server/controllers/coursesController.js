@@ -8,8 +8,8 @@ const HttpError = require('../models/errorModel')
 // POST , api/courses , protected
 const createCourse = async (req,res,next) => {
     try {
-        let { title , category , description , duration } = req.body;
-        if(!title||!category||!description||!duration||!req.files){
+        let { title , category , description , duration , intro ,price} = req.body;
+        if(!title||!category||!description||!duration||!req.files||!price||!intro){
             return next(new HttpError("Fill in all fields and choose thumbnail" , 422));
         }
         const courseExists = await Course.findOne({title: title,instructor: req.user.name});
@@ -29,7 +29,7 @@ const createCourse = async (req,res,next) => {
             if(err){
                 return next(new HttpError(err))
             }else{
-                const newCourse = await Course.create({title, category, description, duration,thumbnail: newFilename,instructor: req.user.name ,creator: req.user.id})
+                const newCourse = await Course.create({title, category, description, intro, duration,price,thumbnail: newFilename,instructor: req.user.name ,creator: req.user.id})
                 if(!newCourse){
                     return next(new HttpError('Course could not be changed.', 422))
                 }
@@ -138,8 +138,8 @@ const editCourse = async (req,res,next) => {
         let fileName;
         let newFilename;
         const courseId = req.params.id;
-        let {title , category , description , duration} = req.body;
-        if(!title || !category || !description.length > 12 || !duration){
+        let {title , category , description , duration , intro,price} = req.body;
+        if(!title || !category || !description.length > 12 ||!intro|| !duration ||!price){
             return next(new HttpError("Fill in all Fields.",422));
         }
         const oldCourse = await Course.findById(courseId);
@@ -166,7 +166,7 @@ const editCourse = async (req,res,next) => {
                     }
                 })
             
-                updatedCourse = await Course.findByIdAndUpdate(courseId,{title , category , description , duration, thumbnail: newFilename},{new: true})
+                updatedCourse = await Course.findByIdAndUpdate(courseId,{title , category , intro,description , duration,price, thumbnail: newFilename},{new: true})
             }
         }
         if(!updatedCourse){
