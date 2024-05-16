@@ -15,7 +15,7 @@ const CreateCourse = () => {
   const [price, setPrice] = useState(0);
   const [category , setCategory] = useState('');
   const [thumbnail , setThumbnail] = useState('');
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [ error , setError] = useState('');
 
 
@@ -29,6 +29,9 @@ const CreateCourse = () => {
   useEffect(()=>{
     if(!token){
       navigate('/Instructor_User')
+    }
+    if(currentUser?.accType !== 'instructor'){
+      navigate('/')
     }
   }, [])
 
@@ -67,7 +70,7 @@ const CreateCourse = () => {
 
   const createCourse = async (e)=>{
     e.preventDefault();
-
+    setIsSubmitting(true)
     const courseData = new FormData();
 
     courseData.set('title',title)
@@ -86,6 +89,8 @@ const CreateCourse = () => {
       }
     } catch (err) {
       setError(err.response.data.message)
+    } finally{
+      setIsSubmitting(false)
     }
 
   }
@@ -159,9 +164,17 @@ const CreateCourse = () => {
           <input type='file' onChange={e =>setThumbnail(e.target.files[0])} accept='png,jpg,gpeg' />
         
         <br />
-        <button type="submit" className="btn-submite">
-          Create
-        </button>
+        {!isSubmitting && (
+          <button type="submit" className="btn-submite">
+            Create
+          </button>
+        )}
+        {isSubmitting && (
+          <button type="submit" className="btn-submite" disabled>
+            Create
+          </button>
+        )}
+
         </div>
       </form>
     </div>

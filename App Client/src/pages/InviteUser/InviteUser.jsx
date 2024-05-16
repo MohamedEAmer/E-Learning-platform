@@ -14,7 +14,7 @@ const InviteUser = () => {
     course:""
   });
 
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [message , setMessage] = useState('');
   const [error , setError] = useState('');
   const navigate = useNavigate();
@@ -27,6 +27,9 @@ const InviteUser = () => {
   useEffect(()=>{
     if(!token){
       navigate('/Instructor_User')
+    }
+    if(currentUser?.accType !== 'instructor'){
+      navigate('/')
     }
   }, [])
 
@@ -61,6 +64,7 @@ const InviteUser = () => {
 
 const handleStudentAccount = async (e) =>{
   e.preventDefault();
+  setIsSubmitting(true)
   setError('');
     try {
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/users/invite`, userData ,
@@ -73,6 +77,8 @@ const handleStudentAccount = async (e) =>{
     } catch (error) {
       setError(error.response.data.message);
       setMessage('')
+    } finally{
+      setIsSubmitting(false)
     }
   }
 
@@ -112,9 +118,16 @@ const handleStudentAccount = async (e) =>{
                 </option>
               ))}
             </select>
-          <button type="submit" className="btn primary" >
-            Invite
-          </button>
+            {!isSubmitting && (
+              <button type="submit" className="btn primary">
+                Update Details
+              </button>
+            )}
+            {isSubmitting && (
+              <button type="submit" className="btn primary" disabled>
+                Update Details
+              </button>
+            )}
         </form>
       </div>
     </div>

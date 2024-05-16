@@ -10,16 +10,16 @@ const createCourse = async (req,res,next) => {
     try {
         let { title , category , description , duration , intro ,price} = req.body;
         if(!title||!category||!description||!duration||!req.files||!price||!intro){
-            return next(new HttpError("Fill in all fields and choose thumbnail" , 422));
+            return next(new HttpError("Fill in all fields and choose thumbnail" , 400));
         }
         const courseExists = await Course.findOne({title: title,instructor: req.user.name});
         // to use this in the session checker
         if(courseExists) {
-            return next(new HttpError('Try new Title for your course ',422))
+            return next(new HttpError('Try new Title for your course ',400))
         }
         const {thumbnail} =  req.files;
         if(thumbnail.size > 2000000){
-            return next(new HttpError('Thumbnail too big , file should be less than 2mb.'))
+            return next(new HttpError('Thumbnail too big , file should be less than 2mb.', 400))
         }
 
         let fileName = thumbnail.name;
@@ -31,7 +31,7 @@ const createCourse = async (req,res,next) => {
             }else{
                 const newCourse = await Course.create({title, category, description, intro, duration,price,thumbnail: newFilename,instructor: req.user.name ,creator: req.user.id})
                 if(!newCourse){
-                    return next(new HttpError('Course could not be changed.', 422))
+                    return next(new HttpError('Course could not be changed.', 400))
                 }
                 const currentUser = await User.findById(req.user.id);
                 const userCourseCount = currentUser.courses + 1;
@@ -54,7 +54,7 @@ const getUserCourses = async (req,res,next) => {
         const {id} =req.params;
         const user = await User.findById(id)
         if (!user) {
-            return next(new HttpError('User not found',422))
+            return next(new HttpError('User not found',400))
         }
         if(user.accType === 'student'){
             const enrolled = user.coursesIn
@@ -79,18 +79,18 @@ const buyCourse =async (req,res,next)=>{
         let { name , email ,title , instructor } = req.body;
         console.log(req.body)
         if(!title||!name||!email){
-            return next(new HttpError("Fill in all fields and enter a valid card information" , 422));
+            return next(new HttpError("Fill in all fields and enter a valid card information" , 400));
         }
 
         const student = await User.findOne({ name: name, email: email });
 
         if(!student){
-            return next(new HttpError("Enter your User name and your E-mail" , 422));
+            return next(new HttpError("Enter your User name and your E-mail" , 400));
         }
         const course = await Course.findOne({title:title,instructor:instructor})
 
         if(!course){
-            return next(new HttpError("Please try againe later" , 422));
+            return next(new HttpError("Please try againe later" , 400));
         }
 
         await student.coursesIn.push(course._id)
@@ -100,7 +100,7 @@ const buyCourse =async (req,res,next)=>{
         res.status(200).json(student)
         
     } catch (error) {
-        return next(new HttpError('You can not buy this course',422))
+        return next(new HttpError('You can not buy this course',400))
     }
 }
 
@@ -155,7 +155,7 @@ const editCourse = async (req,res,next) => {
 
                 const { thumbnail } = req.files;
                 if(thumbnail.size > 2000000){
-                    return next(new HttpError("Thumbnail too big. Should be less than 2mb"));
+                    return next(new HttpError("Thumbnail too big. Should be less than 2mb" , 400));
                 }
                 fileName = thumbnail.name;
                 let splittedFilename = fileName.split('.')

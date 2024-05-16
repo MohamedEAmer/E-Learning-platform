@@ -35,6 +35,9 @@ const CourseContent = () => {
     if(!token){
       navigate('/Instructor_User')
     }
+    //course contant is reachable for each of them but according to the courses rendered to each of them 
+    // student has courses in which he is enrolled in 
+    // instructor has courses which is created by him
   }, [])
 
   useEffect(()=>{

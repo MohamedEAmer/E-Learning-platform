@@ -10,7 +10,7 @@ const CreatSession = () => {
   const [description, setDescription] = useState("");
   const [data, setData] = useState("");
   const [media , setMedia] = useState('');
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [ error , setError] = useState('');
 
   const navigate = useNavigate();
@@ -22,6 +22,9 @@ const CreatSession = () => {
   useEffect(()=>{
     if(!token){
       navigate('/Instructor_User')
+    }
+    if(currentUser?.accType !== 'instructor'){
+      navigate('/')
     }
   }, [])
   
@@ -57,7 +60,7 @@ const CreatSession = () => {
 
   const createSession = async (e)=>{
     e.preventDefault();
-
+    setIsSubmitting(true)
     const sessionData = new FormData();
 
     sessionData.set('name',name)
@@ -73,6 +76,8 @@ const CreatSession = () => {
       }
     } catch (err) {
       setError(err.response.data.message)
+    } finally{
+      setIsSubmitting(false)
     }
 
   }
@@ -119,9 +124,17 @@ const CreatSession = () => {
             <input type="file" onChange={e => setMedia(e.target.files[0])} accept=".png, .jpg, .jpeg, .pdf, .mp4, .mkv, .avi" />
             {/* no loading animation added or logic because it uploads and call from uploads file in backend folder  */}
           </div>
-          <button type="submit" className="btn primary">
-            Create
-          </button>
+          
+          {!isSubmitting && (
+            <button type="submit" className="btn primary">
+              Create
+            </button>
+          )}
+          {isSubmitting && (
+            <button type="submit" className="btn primary" disabled>
+              Create
+            </button>
+          )}
         </div>
       </form>
     </div>

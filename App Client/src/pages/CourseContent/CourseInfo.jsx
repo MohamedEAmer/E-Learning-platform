@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Link } from "react-router-dom";
+import React, { useState , useEffect , useContext  } from 'react'
+import { Link , useNavigate , useParams} from "react-router-dom";
 import axios from 'axios'
 import Loader from '../../components/Loader'
+import { UserContext } from '../../context/userContext'
 
 
 const CourseInfo = () => {
@@ -15,6 +15,21 @@ const CourseInfo = () => {
   const [price, setPrice] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const navigate = useNavigate();
+  const {currentUser} = useContext(UserContext)
+  const token = currentUser?.token;
+
+  useEffect(()=>{
+    if(!token){
+      navigate('/Instructor_User')
+    }
+    if(currentUser?.accType !== 'student'){
+      navigate('/')
+    }
+  }, [])
+
+
+
   useEffect(()=>{
     const getCourse =async () =>{
       try {
@@ -25,11 +40,13 @@ const CourseInfo = () => {
         setDescription(response.data.description)
         setThumbnail(response.data.thumbnail)
         setPrice(response.data.price)
+        setIsLoading(false)
       } catch (err) {
         console.log(err)
       }
     }
     getCourse()
+    setIsLoading(true)
   },[])
 
   if (isLoading){

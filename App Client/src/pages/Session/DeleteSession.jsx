@@ -16,6 +16,9 @@ const DeleteSession = ({sessionID }) => {
     if(!token){
       navigate('/Instructor_User')
     }
+    if(currentUser?.accType !== 'instructor'){
+      navigate('/')
+    }
   }, [])
 
   const removeSession = async ()=>{

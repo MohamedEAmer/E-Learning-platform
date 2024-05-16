@@ -11,8 +11,8 @@ const HttpError = require('../models/errorModel')
 let nodeConfig = {
     service: 'gmail',
     auth: {
-      user: 'mohamedamer25411@gmail.com',// change the mail
-      pass: "mblpmjivhcayjrna"
+      user: process.env.EMAIL,// change the mail
+      pass: process.env.PASS
     }
 }
   
@@ -50,7 +50,7 @@ const sendInvitationEmail = async (userEmail, name , password ,course) => {
     var emailBody = MailGenerator.generate(email);
 
     let message = {
-        from : 'mohamedamer25411@gmail.com',
+        from : process.env.EMAIL,
         to: userEmail,
         subject : "Storky App Course Invite",
         html : emailBody

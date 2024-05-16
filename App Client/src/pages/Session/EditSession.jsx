@@ -14,7 +14,7 @@ const EditSession = () => {
   const [data, setData] = useState("");
   const [media , setMedia] = useState('');
   const [sessionCourse , setSessionCourse] = useState('');
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [ error , setError] = useState('');
 
   const navigate = useNavigate();
@@ -26,6 +26,9 @@ const EditSession = () => {
   useEffect(()=>{
     if(!token){
       navigate('/login')
+    }
+    if(currentUser?.accType !== 'instructor'){
+      navigate('/')
     }
   }, [])
 
@@ -78,7 +81,7 @@ const EditSession = () => {
 
   const editSession = async (e)=>{
     e.preventDefault();
-
+    setIsSubmitting(true)
     const sessionData = new FormData();
 
     sessionData.set('name',name)
@@ -95,6 +98,8 @@ const EditSession = () => {
       }
     } catch (err) {
       setError(err.response.data.message)
+    } finally{
+      setIsSubmitting(false)
     }
 
   }
@@ -147,9 +152,16 @@ const EditSession = () => {
             <input type="file" onChange={e => setMedia(e.target.files[0])} accept=".png, .jpg, .jpeg, .pdf, .mp4, .mkv, .avi" />
             {/* no loading animation added or logic because it uploads and call from uploads file in backend folder  */}
           </div>
-          <button type="submit" className="btn primary">
-            Update
-          </button>
+          {!isSubmitting && (
+            <button type="submit" className="btn primary">
+              Update
+            </button>
+          )}
+          {isSubmitting && (
+            <button type="submit" className="btn primary" disabled>
+              Update
+            </button>
+          )}
           </div>
       </form>
     </div>

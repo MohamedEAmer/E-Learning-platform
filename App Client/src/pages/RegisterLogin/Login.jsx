@@ -9,7 +9,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error , setError] = useState('');
   const navigate = useNavigate();
 
@@ -24,6 +24,7 @@ const Login = () => {
   const loginUser = async (e)=>{
     e.preventDefault();
     setError('');
+    setIsSubmitting(true)
 
     try {
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/users/login`, userData);
@@ -32,6 +33,8 @@ const Login = () => {
       navigate('/')
     } catch (error) {
       setError(error.response.data.message);
+    } finally{
+      setIsSubmitting(false)
     }
   }
 
@@ -60,9 +63,16 @@ const Login = () => {
               required
               className="password"
             />
-            <button type="submit" className="btn primary lo">
-              Login
-            </button>
+            {!isSubmitting && (
+              <button type="submit" className="btn primary lo">
+                Login
+              </button>
+            )}
+            {isSubmitting && (
+              <button type="submit" className="btn primary lo" disabled>
+                Login
+              </button>
+            )}
           </form>
           <small>
             You Don't have an account?<Link to="/register"> Register</Link>

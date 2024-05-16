@@ -15,7 +15,7 @@ const authMiddleware = async ( req , res , next)=>{
             next()
         })
     }else{
-        return next(new HttpError('Unauthorized. No token.',402))
+        return next(new HttpError('Unauthorized. No token.',403))
     }
 
 }

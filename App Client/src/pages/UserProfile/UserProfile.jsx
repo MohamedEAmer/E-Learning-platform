@@ -13,6 +13,7 @@ const UserProfile = () => {
   const [confirmNewPassword,setConfirmNewPassword]=useState('');
   const [isAvatarTouched,setIsAvatarTouched]=useState(false);
   const [error,setError]=useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
 
   const navigate = useNavigate()
@@ -40,6 +41,7 @@ const UserProfile = () => {
 
   const changeAvatarHandler = async () => {
     setIsAvatarTouched(false);
+    setIsSubmitting(true)
     try {
       const postData = new FormData();
       postData.set('avatar', avatar)
@@ -48,6 +50,8 @@ const UserProfile = () => {
       setAvatar(response?.data.avatar)
     } catch (err) {
       console.log(err)
+    } finally{
+      setIsSubmitting(false)
     }
   }
 
@@ -97,7 +101,12 @@ const UserProfile = () => {
                   <FaEdit className="edit" />
                 </label>
               </form>
-              {isAvatarTouched && <button className='profile__avatar-btn' onClick={changeAvatarHandler}><FaCheck/></button>}
+              {isAvatarTouched && !isSubmitting && (
+                <button className='profile__avatar-btn' onClick={changeAvatarHandler}><FaCheck/></button>
+              )}
+              {isAvatarTouched && isSubmitting && (
+                <button className='profile__avatar-btn' onClick={changeAvatarHandler} disabled><FaCheck/></button>
+              )}
             </div>
             <h1>{currentUser.name}</h1>
             {/*update user details*/}
@@ -134,9 +143,16 @@ const UserProfile = () => {
                 value={confirmNewPassword}
                 onChange={(e) => setConfirmNewPassword(e.target.value)}
               />
-              <button type="submit" className="btn primary">
-                Update Details
-              </button>
+              {!isSubmitting && (
+                <button type="submit" className="btn primary">
+                  Update Details
+                </button>
+              )}
+              {isSubmitting && (
+                <button type="submit" className="btn primary" disabled>
+                  Update Details
+                </button>
+              )}
             </form>
           </div>
         </div>

@@ -9,7 +9,7 @@ const Register = () => {
     password: "",
     password2: "",
   });
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error , setError] = useState('');
   const navigate = useNavigate();
 
@@ -20,8 +20,10 @@ const Register = () => {
   }
 
   const registerUser = async (e)=>{
-
     e.preventDefault()
+    setIsSubmitting(true)
+
+
     try {
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/users/register`, userData);
       const newUser = await response.data;
@@ -32,6 +34,8 @@ const Register = () => {
       navigate('/login')
     } catch (error) {
         setError(error.response.data.message);
+    } finally{
+      setIsSubmitting(false)
     }
   }
 
@@ -75,9 +79,16 @@ const Register = () => {
               onChange={changeInputHandler}
               required
             />
-            <button type="submit" className="btn primary">
-              Register
-            </button>
+            {!isSubmitting && (
+              <button type="submit" className="btn primary">
+                Register
+              </button>
+            )}
+            {isSubmitting && (
+              <button type="submit" className="btn primary" disabled>
+                Register
+              </button>
+            )}
           </form>
           <small>
             Already have an account?<Link to="/login"> sign in</Link>

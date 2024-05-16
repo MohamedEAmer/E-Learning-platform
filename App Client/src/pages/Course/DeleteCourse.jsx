@@ -16,6 +16,9 @@ const DeleteCourse = ({courseID}) => {
     if(!token){
       navigate('/Instructor_User')
     }
+    if(currentUser?.accType !== 'instructor'){
+      navigate('/')
+    }
   }, [])
 
   const removeCourse = async ()=>{

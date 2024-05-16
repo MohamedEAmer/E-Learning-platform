@@ -14,6 +14,7 @@ const Payment = () => {
   const [expiration, setExpiration] = useState("");
   const [cvv, setCVV] = useState("");
   const [ error , setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {currentUser} = useContext(UserContext)
   const token = currentUser?.token;
@@ -22,6 +23,10 @@ const Payment = () => {
     if(!token){
       navigate('/Instructor_User')
     }
+    if(currentUser?.accType !== 'student'){
+      navigate('/')
+    }
+    
   }, [])
 
   const navigate = useNavigate();
@@ -45,7 +50,7 @@ const Payment = () => {
 
   const buyCourseHandler = async (e)=>{
     e.preventDefault();
-
+    setIsSubmitting(true)
     const paymentData = new FormData();
 
     paymentData.set('title',title)
@@ -63,6 +68,8 @@ const Payment = () => {
       }
     } catch (err) {
       setError(err.response.data.message)
+    } finally{
+      setIsSubmitting(false)
     }
 
   }
@@ -142,9 +149,16 @@ const Payment = () => {
           <label htmlFor="text">{price}</label>
         </div>
 
-        <button className="btn primary" type="submit">
-          Confirm Payment
-        </button>
+        {!isSubmitting && (
+          <button type="submit" className="btn primary">
+            Update Details
+          </button>
+        )}
+        {isSubmitting && (
+          <button type="submit" className="btn primary" disabled>
+            Update Details
+          </button>
+        )}
       </form>
     </div>
   );

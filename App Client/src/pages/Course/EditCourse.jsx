@@ -13,7 +13,7 @@ const EditCourse = () => {
   const [price, setPrice] = useState(0);
   const [category , setCategory] = useState('');
   const [thumbnail , setThumbnail] = useState('');
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [ error , setError] = useState('');
 
   const navigate = useNavigate();
@@ -25,6 +25,9 @@ const EditCourse = () => {
   useEffect(()=>{
     if(!token){
       navigate('/Instructor_User')
+    }
+    if(currentUser?.accType !== 'instructor'){
+      navigate('/')
     }
   }, [])
 
@@ -82,7 +85,7 @@ const EditCourse = () => {
 
   const editCourse = async (e)=>{
     e.preventDefault();
-
+    setIsSubmitting(true)
     const courseData = new FormData();
 
     courseData.set('title',title)
@@ -101,6 +104,8 @@ const EditCourse = () => {
       }
     } catch (err) {
       setError(err.response.data.message)
+    } finally{
+      setIsSubmitting(false)
     }
 
   }
@@ -172,9 +177,17 @@ const EditCourse = () => {
           <input type='file' onChange={e =>setThumbnail(e.target.files[0])} accept='png,jpg,gpeg' />
         </div>
         <br />
-        <button type="submit" className="btn-submite">
-          Save
-        </button>
+
+        {!isSubmitting && (
+          <button type="submit" className="btn-submite">
+            Save
+          </button>
+        )}
+        {isSubmitting && (
+          <button type="submit" className="btn-submite" disabled>
+            Save
+          </button>
+        )}
       </form>
     </div>
   );
