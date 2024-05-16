@@ -159,7 +159,6 @@ const CourseContent = () => {
                 >
                   <div className="video-info">
                     <h4 className="video-title">{session.name}</h4>
-                    {/* <p>{session.name}</p> */}
                     <p className="video-duration">{session.description}</p>
                   </div>
                   {currentUser.id === session.creator &&<div className="video-icon">
